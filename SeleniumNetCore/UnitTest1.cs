@@ -28,6 +28,10 @@ namespace SeleniumNetCore
             // Click on ckeckbox - with no id
             Driver.FindElement(by: By.XPath("//input[@name='ctl00$ContentPlaceHolder1$ChildMeal1']/following-sibling::div[text()='Celery']")).Click();
 
+            IWebElement comboControll = Driver.FindElement(By.XPath("//input[@id='ContentPlaceHolder1_AllMealsCombo-awed']"));
+            comboControll.Clear();
+            comboControll.SendKeys("Almond");
+            Driver.FindElement(By.XPath("//div[@id='ContentPlaceHolder1_AllMealsCombo-dropmenu']//li[text()='Almond']")).Click();
 
             Console.WriteLine("Test1");
             Assert.Pass();
