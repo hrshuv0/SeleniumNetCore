@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumNetCore.Pages;
 
 namespace SeleniumNetCore;
 
@@ -16,7 +17,7 @@ public class Tests : DriverHelper
     }
 
     [Test]
-    public void Test1()
+    public void Test()
     {
         Driver.Navigate().GoToUrl("https://demowf.aspnetawesome.com/");
 
@@ -38,5 +39,21 @@ public class Tests : DriverHelper
 
         Console.WriteLine("Test1");
         Assert.Pass();
+    }
+
+    [Test]
+    public void LoginTest()
+    {
+        Driver.Navigate().GoToUrl("http://eaapp.somee.com/");
+
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = new LoginPage();
+
+        homePage.ClickLogin();
+        loginPage.EnterUsernameAndPassword("admin", "password");
+        loginPage.ClickLogin();
+        
+        Assert.That(homePage.IsLogOffExists(), Is.True, "Log off button did not displayed");
+
     }
 }
